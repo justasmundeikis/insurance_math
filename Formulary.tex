@@ -1,0 +1,244 @@
+\documentclass[11pt,a4paper,fleqn]{article}      % fleqn: align equations left
+% Document:
+\usepackage{geometry}                   % Custom margins for single page, etc.
+\usepackage{fullpage}                   % Use the full page
+\usepackage{setspace}                   % Enables custom margins, doublespacing, etc.
+\usepackage{pdflscape}                  % Use: \begin{landscape} ... \end{landscape}
+% Font/text:
+\usepackage[latin9]{inputenc}               % Font definition and input type
+\usepackage[T1]{fontenc}                 % Font output type 
+\usepackage{lmodern}                   % Latin Modern fonts
+\usepackage{textcomp}                   % Supports many additional symbols
+\usepackage{amsmath}                   % Math equations, etc.
+\usepackage{amsthm}                    % Math theorems, etc.
+\usepackage{amsfonts}                   % Math fonts (e.g. script fonts)
+\usepackage{amssymb}                   % Math symbols such as infinity
+\DeclareMathOperator*{\Max}{Max}             % Better looking max function
+\DeclareMathOperator*{\Min}{Min}             % Better looking min function
+\usepackage{color}                    % Enables colored text
+\definecolor{darkblue}{rgb}{0.0,0.0,0.66}         % Custom color: dark blue
+\usepackage[hyperfootnotes=false,bookmarksopen]{hyperref} % Enable hyperlinks, expand menu subtree
+\hypersetup{                       % Custom hyperlink settings
+  pdffitwindow=false,                  % true: window fit to page when opened
+  pdfstartview={XYZ null null 1.00},          % Fits the default zoom of the page to 100%
+  pdfnewwindow=true,                  % Links in new window
+  colorlinks=true,                   % false: boxed links; true: colored links
+  linkcolor=darkblue,                  % Color of internal links
+  citecolor=darkblue,                  % Color of links to bibliography
+  urlcolor=darkblue }                 % Color of external links
+% Images:
+\usepackage{graphicx}                   % Allows .jpg images to be included
+%\usepackage{epstopdf}                  % Convert .eps images on the fly
+\usepackage{subfig}                    % Enables arrayed images
+\usepackage[section]{placeins}              % Forces floats to stay in section
+\usepackage{float}                    % Used with restylefloat
+\restylefloat{figure}                   % "H" forces a figure to be "exactly here"
+\usepackage[justification=centering]{caption}       % Center captions
+% Tables/arrays:
+%\usepackage{booktabs}                  % Table format - increases table spacing
+%\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}  % Spacing for tables increased
+%\renewcommand{\arraystretch}{1.5}            % Spaces arrays at 1.5x
+%\usepackage{dcolumn}                   % Align decimals in tables (as option)
+%\newcolumntype{.}{D{.}{.}{-1}}              % Align decimals e.g. \begin{tabular}{c...}
+% Miscellaneous:
+\usepackage{datetime}                   % Custom date format for date field
+\newdateformat{mydate}{\monthname[\THEMONTH] \THEYEAR}  % Defining month year date format
+%\usepackage{tikz}                    % Timelines and other drawings
+%\usetikzlibrary{decorations}               % Formating for Tikz
+\usepackage{enumitem}
+
+\usepackage{multirow} %multi rows in tables
+\usepackage{lscape} %landscape layout of single pages
+
+\usepackage[table,xcdraw]{xcolor}
+
+\begin{document}
+\begin{titlepage}
+\title{Basic insurance formulary}
+\author{Justas Mundeikis}
+\date{Last update:\\ \today}
+\maketitle
+\thispagestyle{empty}
+%\begin{center}{\bf \color{darkblue} PRELIMINARY: PLEASE DO NOT CITE OR DISTRIBUTE}\end{center}
+\vspace{0.5cm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ABSTRACT
+%\begin{abstract}
+%\onehalfspacing
+%Abstract...
+%\end{abstract}
+\end{titlepage}
+\clearpage
+%\onehalfspacing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  INTRODUCTION
+
+%\listoffigures
+ 
+%\listoftables
+ 
+\newpage
+
+\section{Definitions}
+
+\subsection{Time}
+Any time spot is denotet with a letter $t$, where as the subscript of denotes the exact time spot. 
+\begin{itemize}
+\item $t_{S}$ - is the agreed date when the policy becomes effective
+\item $t_{E}$ - is the agreed date when the policy expires
+\item $t_{C}$ - is the the premature date of expiration on behalf of incurance company or policy holder
+\item $t_{T}$ - is the the date of insurance termination. Which is the output of the function $\min(t_E; t_C)$ (see \ref{sec:funct})
+\item $t_{n}$ - is the actual date of calculation. In this example, it is set to 2017.07.15, so $t_n$ is equivalent to $t_{(2017.07.15)}$
+\end{itemize}
+
+
+
+\subsection{Premium}
+
+
+\begin{itemize}
+\item \textbf{WP} (Written Premium) - is the ampount the insured must pay in order to get insurance coverage in exchange. There are different methods how to calculate the WP, but in generall the WP has to equal the expected pay outs of the insurance company and has the following form:
+$$WP=\mu + \sigma +OE +RC+U$$ 
+where $mu$ is the expected loss, $\sigma$ is the variability of expected loss, $OE$ are the operting expences, $RC$ is the reinsurance cost, U is the profit and $TotExp$ as the proportion of $OE+RC+U$ of WP
+
+It is common to represent expenses and profit as a proportion of "pure risk premium", hence the formula can be expressed as:
+$$WP=\frac{\mu + \sigma}{1-\frac{TotExp}{WP}}$$ 
+
+
+
+
+\item \textbf{CP} (Canceled Premium) - is the premium amount that has been or has not been paid in for the the period between cancelation and policy end date. Is calculated as: 
+$$CP=\frac{END-CANCEL+1}{END-START+1} \times WP $$
+$$CP_A=\frac{2017.12.31-2017.10.30+1}{2017.12.31-2017.01.01+1} \times 2400=  \frac{61}{365} \times 2400=401.10 $$
+
+
+\end{itemize}
+
+\subsection{Claims}
+
+\begin{itemize}
+\item CLAIMS - is defined as the monetary value already paid out for policy holder / beneficiery person in a reported claim event
+\item RESERVES - is defined as the monetary value reserved to be possibly paid out in a reported claim event
+\item IBNR (Incurred But Not Reported) - are reserves for losses that have happened but have not been reported yet, in other words, IBNR is the expected pay out in the future.
+\item REGRESS - is defined as a monteray value regressed (regained) in a reported claim event.
+\end{itemize}
+
+\subsection{Functions}
+\label{sec:funct}
+
+\begin{itemize}
+\item $NA$ is the equivalent of "missing value", ar an empty cell in a spread sheet
+\item Function $\min(a,b)$ chooses the smallest value bewteen a and b. So function $\min(21,12)$ returns $12$ as the result. If function $\min(10,NA,12)$ evaluates the smallest vallue, out of three entries, then NA will not be evaluated so that this function returns $10$ as the smallest value. 
+\end{itemize}
+
+
+\section{Formulas}
+
+\begin{enumerate}
+
+\item \textbf{GWP} (Gross Written Premium) - is the difference between written premium (WP) and canceled premium (CP) at the end of the insurance period. $$GWP=WP-CP$$ 
+If the policy is not canceled, then $CP=0$ and $GWP=WP$.
+
+It can also be expressed as $GWP=EP+UPR$
+
+\item \textbf{UPR} (Unearned Premium Reserve) - is the ammount of premium that is reserved as not yet earned and if policy is cancelled, this amouont would be returned to policy holder/payer. 
+
+$$UPR=\frac{t_T - \min(t_T,t_n)}{t_T - t_S +1 } \times (WP - CP)$$ 
+with $$\frac{UPR}{GWP} \in [0,1]$$ Means that UPR must be equal from 0 to 1 (0-100 \% of GWP depending on period when the calculation is done (TODAY)).
+$$UPR_C=\frac{2017.11.10-\min(2017.11.10,2017.05.10)}{2017.11.10-2017.01.01+1} \times (2400-341.9)=$$
+$$=UPR_C=\frac{2017.11.10-2017.07.15}{2017.11.10-2017.01.01 +1} \times 2058.1=$$
+$$=UPR_C=\frac{118}{314} \times 2058.1=773.4$$
+
+\item \textbf{EP} (Earned Premium) - is the ammont of earned premium to date of cancelation. 
+$$EP=GWP-UPR$$
+$$EP_B=(2400-335.34)-901.91=1162.75$$
+
+
+\item \textbf{IY} (Insurance Years (TODAY)) is the .... 
+$$IY=\frac{(\min{(END, CANCEL, TODAY)}-START+1}{365}$$
+
+
+\item \textbf{CIY} (Contract Insurance Years) is the ... 
+$$CIY=\frac{\min(END, CANCEL) - START +1}{365}$$
+
+
+
+\item \textbf{IL} (Incurred Losses) - 
+$$IL=CLAIMS + RESERVES - REGRESS + IBNR$$ important to note here, that IBNR changes over times, with its maximum at $t_{S}$ and with 0 at $t_{E}$
+
+\item \textbf{LR} (Loss Ratio) -  is the ratio between total claims and total premium collected. LR changes over time, as IL can decrease with decreasing IBNR and EP increasestowards the end of insurance period. 
+
+$$LR_t=\frac{IL_t}{EP_t}$$
+
+\item \textbf{CC} (Claims Count) - is the number of claims occured
+
+\item \textbf{AC} (Average Claim) - is the average claim size of all claims occured.
+$$AC_t=\frac{IL_t}{CC_t}$$
+
+
+
+\item \textbf{CF} (Claim Frequency) - $CF=\frac{CC}{IY}$
+
+\item \textbf{$\varnothing$ EP} (average Earned Premium)- $\varnothing$ $EP =\frac{EP}{IY}$
+
+\item \textbf{$\varnothing$ GWP} (average Gross Written Premium)- $\varnothing GWP =\frac{GWP}{CIY}$
+
+\item \textbf{BC} (Burning Cost) - Average claim x Claim frequency
+
+\item \textbf{TLR} (Target Loss Ratio) - is mannualy set every year, for example "66.2"
+
+\item \textbf{TP} (Target Premium) - $TP=\frac{BC}{TLR}$
+
+\item Price increases are needed if: $LR> TRL$ or if $TP>\varnothing GWP$
+
+
+
+\end{enumerate}
+
+
+\section{Example file}
+
+\begin{table}[H]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+Attribute       & Policy A   & Policy B   & Policy C   & Policy C   & Policy D   & SUM                \\ \hline
+$t_S$          & 2017-01-01 & 2017-01-01 & 2017-01-01 & 2017-03-01 & 2017-01-01 &                    \\ \cline{1-6}
+$t_C$          &            & 2017-05-10 & 2017-11-10 &            & 2017-01-01 &                    \\ \cline{1-6}
+$t_E$             & 2017-12-31 & 2017-12-31 & 2017-12-31 & 2017-09-30 & 2017-12-31 &                    \\ \cline{1-6}
+$t_T$     & 2017-12-31 & 2017-05-10 & 2017-11-10 & 2017-09-30 & 2017-01-01 &                    \\ \cline{1-6}
+$t_n$           & 2017-07-15 & 2017-07-15 & 2017-07-15 & 2017-07-15 & 2017-07-15 & \multirow{-5}{*}{} \\ \hline
+                &            &            &            &            &            &                    \\ \hline
+SUM INSURED     & 10,000     & 10,000     & 10,000     & 10,000     & 10,000     & 50,000             \\ \hline
+\rowcolor[HTML]{3166FF} 
+CLAIM FREQUENCY & 40.00\%    & 40.00\%    & 40.00\%    & 40.00\%    & 40.00\%    & 40.00\%            \\ \hline
+WP              & 2,400.0    & 2,400.0    & 2,400.0    & 1,407.1    & 2,400.0    & 11,007.12          \\ \hline
+CP              & 0.0        & 1,551.8    & 341.9      & 0.0        & 2,400.0    & 4,293.70           \\ \hline
+GWP             & 2,400.0    & 848.2      & 2,058.1    & 1,407.1    & 0.0        & 6,713.42           \\ \hline
+UPR             & 1,111.2    & 0.0        & 901.9      & 506.3      & 0.0        & 2,519.45           \\ \hline
+EP              & 1,288.8    & 848.2      & 1,156.2    & 900.8      & 0.0        & 8,487.68           \\ \hline
+IY              & 0.5        & 0.4        & 0.5        & 0.4        & 0.0        & 1.81               \\ \hline
+CIY             & 1.0        & 0.4        & 0.9        & 0.6        & 0.0        & 2.81               \\ \hline
+\rowcolor[HTML]{FFFE65} 
+CLAIMS          & 0.0        & 0.0        & 6,000.0    & 1,000.0    & 0.0        & 7,000.00           \\ \hline
+\rowcolor[HTML]{FFFE65} 
+RESERVES        & 0.0        & 0.0        & 0.0        & 3,000.0    & 0.0        & 3,000.00           \\ \hline
+\rowcolor[HTML]{3166FF} 
+IBNR            & 1,863.0    & 0.0        & 1,515.9    & 1,457.9    & 0.0        & 4,836.88           \\ \hline
+REGRESS         & 0          & 0          & 0          & 0          & 0          & 0.00               \\ \hline
+IL              & 0          & 0          & 6000       & 4000       & 0          & 10,000.00          \\ \hline
+LR              & 0.00\%     & 0.00\%     & 518.95\%   & 444.04\%   & 0.00\%     & 117.82\%           \\ \hline
+CC              & 2.00       & 2.00       & 2.00       & 2.00       & 2.00       & 2.00               \\ \hline
+CF              & 1.11       & 1.11       & 1.11       & 1.11       & 1.11       & 1.11               \\ \hline
+AC              & 5,000      & 5,000      & 5,000      & 5,000      & 5,000      & 5,000              \\ \hline
+YEP             & 2,319      & 2,319      & 2,319      & 2,319      & 2,319      & 2,319              \\ \hline
+YGWP            & 2,393      & 2,393      & 2,393      & 2,393      & 2,393      & 2,393              \\ \hline
+BC              & 2000       & 2000       & 2000       & 2000       & 2000       & 2000               \\ \hline
+TLR             & 66.20\%    & 66.20\%    & 66.20\%    & 66.20\%    & 66.20\%    & 66.20\%            \\ \hline
+TP              & 3,021      & 3,021      & 3,021      & 3,021      & 3,021      & 3,021              \\ \hline
+\end{tabular}
+\end{table}
+
+\end{document}
