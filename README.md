@@ -1,0 +1,3 @@
+# Insurance mathematics basics
+
+Credits:
