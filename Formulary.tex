@@ -60,12 +60,12 @@
 
 \begin{document}
 \begin{titlepage}
-\title{Basic insurance formulary}
-\author{Justas Mundeikis}
+\title{Basic non-life insurance formulary}
+\author{Justas Mundeikis\\ Lecturer and Economist \footnote{The opinions expressed in this work represent my own and not those of my employer. All data and information provided is for informational purposes only. You can contact me by \href{mailto: justas.mundeikis@lithuanian-economy.net}{justas.mundeikis@lithuanian-economy.net} }\\ www.lithuanian-economy.net}
 \date{Last update:\\ \today}
 \maketitle
 \thispagestyle{empty}
-%\begin{center}{\bf \color{darkblue} PRELIMINARY: PLEASE DO NOT CITE OR DISTRIBUTE}\end{center}
+\begin{center}{\bf \color{darkblue} PRELIMINARY: PLEASE DO NOT CITE OR DISTRIBUTE}\end{center}
 \vspace{0.5cm}
 
 
@@ -87,9 +87,9 @@
  
 \newpage
 \section{Introduction}
-Here comes the introduction about non-life insurance...
+This basic non-life insurance formulary is to help to understand what are the key facts used in calculating the premium in insurance cotnracts as well as to show what are the key measures used to analyse of the insurance business. The focus is on pricing calculations. The whole formulary is build on step-be-step appoach. In each section some new definitions are introduced, accompanied by their formulas and then the ongoing example is used to illustrate the theory.
 
-\section{The example 1}
+\section{The story}
 
 Assume the following situation: you have 5 friends, with each owing a car. They have approximately the same car, and their driving behaviour is pretty the same, as they are siblings. As none of them wants to be left out in the rain, in case of an car accident, they decide to share the risk and to by an insurence policy. Your task is to define the price for their insurance give the following information:
 \begin{itemize}
@@ -104,40 +104,132 @@ Assume the following situation: you have 5 friends, with each owing a car. They 
 
 
 
-\section{Definitions}
-
-\subsection{Time}
-Any time spot is denotet with a letter $t$, where as the subscript of denotes the exact time spot. 
+\section{Time}
+Any time spot is denotet with a letter $t$, whereas the subscript of $t$ denotes the exact time spot. There are 4 main time spots: the date of policy issue, the date of policy begin, the date or regular policy end and in some cases, the date of policy cancelation. Though some insurares take it very exactly in using using hours in addition to the date, in most cases such precision is not necessary.
 \begin{itemize}
-\item $t_{S}$ - is the agreed date when the policy becomes effective
-\item $t_{E}$ - is the agreed date when the policy expires
-\item $t_{C}$ - is the the premature date of expiration on behalf of incurance company or policy holder
-\item $t_{T}$ - is the the date of insurance termination. Which is the output of the function $\min(t_E; t_C)$ (see \ref{sec:funct})
-\item $t_{n}$ - is the actual date of calculation. In this example, it is set to 2017.07.15, so $t_n$ is equivalent to $t_{(2017.07.15)}$
+\item $t_{I}$ - is the date of policy issue. This date is important as it is the basic date for any policy duration calculation. 
+\item $t_{S}$ - is the date when the policy takes effect.
+\item $t_{E}$ - is the agreed date when the policy expires. This date is the usual expiration date of the insurance.
+\item $t_{C}$ - is the the premature date of expiration on behalf of incurance company or the policy holder. If for example the policy holder dies, or the insured object is destroyd due to an unforseen event, or other reasons, the insurance contract might get canceled.
+\item $t_{T}$ - is the date of insurance termination, either the end date of insurance or the date of its cancelation. It is the minimum (see \ref{sec:funct}) of these two dates and can be mathematically described as $$t_T=\min(t_E, t_C)$$ 
+\item $t_{A}$ - is the actual date of calculation. In this example, it is set to 2017.07.15, so $t_A$ is equivalent to $t_{(2017.07.15)}$
 \end{itemize}
 
 
 
-\subsection{Premium}
+Lets asume the the first customer signs his policy ($P_A$) signs the insurance contract on 2017.01.01 with the start date of 20017.01.01 and the end date of 2017.12.31. The second customer signs the contract on 2017.01.01 with the insurance start date of 2017.01.01, insurence end date of 2017.12.31, but whose policy is canceled on 2017.05.10. The third customer signs his contract on 2017.10.01, with contract start date 2017.01.01 and contract end date 2017.12.31. The fourth customer signs the contract on 2017.02.01, with insuracne begin on 2017.03.01 and insurence contract end on 2017.09.30 whereas the last customer signs the contract on 207.12.31 with the insurance start date of 2017.01.01 but cancels the insurance before it begins, so the cancel date is also the 2017.01.01.
+
+Having all this information, we can construct the follwoing table:
+
+\begin{table}[H]
+\centering
+\caption{Basic insurance date information}
+\label{my-label}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+Attribute & $P_A$ & $P_B$ & $P_C$ & $P_D$ & $P_E$ \\ \hline
+$t_{I}$ (Issue date) & \multicolumn{1}{l|}{2017.01.01} & \multicolumn{1}{l|}{2017.01.01} & \multicolumn{1}{l|}{2016.10.01} & \multicolumn{1}{l|}{2017.02.01} & \multicolumn{1}{l|}{2017.12.31} \\ \hline
+$t_{S}$ (Policy start date) & 2017.01.01 & 2017.01.01 & 2017.01.01 & 2017.03.01 & 2017.01.01 \\ \hline
+$t_{C}$ (Policy cancellation date) &  & 2017.05.10 & 2017.11.10 &  & 2017.01.01 \\ \hline
+$t_{E}$ (Policy end date) & 2017.12.31 & 2017.12.31 & 2017.12.31 & 2017.09.30 & 2017.12.31 \\ \hline
+$t_{T}$ (Policy termination date) & 2017.12.31 & 2017.05.10 & 2017.11.10 & 2017.09.30 & 2017.01.01 \\ \hline
+$t_{a}$ (Today, as of 2017-07-15) & 2017.07.15 & 2017.07.15 & 2017.07.15 & 2017.07.15 & 2017.07.15 \\ \hline
+\end{tabular}
+\end{table}
+
+Data in this table can be used to calculate the folloing policy metrics:
+
+\begin{itemize}
+\item \textbf{IY} (Insurance Years) is the gives the duration of an insurance contract in years.  The main difference to CIY is that, if the date of calculation ($t_A$) is smaller then the contract termiantion date ($t_T$), then CI calculates the duration of ongoing contract since its beginning.
+$$IY_t=\frac{\min{(t_T, t_A)}-t_S+1}{365}$$
+
+\item \textbf{CIY} (Contract Insurance Years) gives the expected or factual duration of a contract, regardless on when the calculation itselgf is done.
+$$CIY=\frac{t_T - t_S +1}{365}$$
+
+\item NOTE: if $t_A \geq t_E \geq t_C$ then $IY = CIY$ means that if calculation is done after the termination of the contract, both $IY$ and $CIY$ yield the same result, otherwise $IY<CIY$.
+\end{itemize}
+
+The datbe can be updated with the two metrics and one additional columns, representing the sum:
+
+\begin{table}[H]
+\centering
+\caption{Time table}
+\label{my-label}
+\begin{tabular}{|l|c|c|c|c|c|l|}
+\hline
+Attribute & $P_A$ & $P_B$ & $P_C$ & $P_D$ & $P_E$ & SUM \\ \hline
+$t_{I}$ (Issue date) & \multicolumn{1}{l|}{2017.01.01} & \multicolumn{1}{l|}{2017.01.01} & \multicolumn{1}{l|}{2016.10.01} & \multicolumn{1}{l|}{2017.02.01} & \multicolumn{1}{l|}{2017.12.31} &  \\ \hline
+$t_{S}$ (Policy start date) & 2017.01.01 & 2017.01.01 & 2017.01.01 & 2017.03.01 & 2017.01.01 &  \\ \hline
+$t_{C}$ (Policy cancellation date) &  & 2017.05.10 & 2017.11.10 &  & 2017.01.01 &  \\ \hline
+$t_{E}$ (Policy end date) & 2017.12.31 & 2017.12.31 & 2017.12.31 & 2017.09.30 & 2017.12.31 &  \\ \hline
+$t_{T}$ (Policy termination date) & 2017.12.31 & 2017.05.10 & 2017.11.10 & 2017.09.30 & 2017.01.01 &  \\ \hline
+$t_{a}$ (Today) & 2017.07.15 & 2017.07.15 & 2017.07.15 & 2017.07.15 & 2017.07.15 &  \\ \hline
+IY & \multicolumn{1}{l|}{0.5} & \multicolumn{1}{l|}{0.4} & \multicolumn{1}{l|}{0.5} & \multicolumn{1}{l|}{0.4} & \multicolumn{1}{l|}{0.0} & 1.8 \\ \hline
+CIY & \multicolumn{1}{l|}{1.0} & \multicolumn{1}{l|}{0.4} & \multicolumn{1}{l|}{0.9} & \multicolumn{1}{l|}{0.6} & \multicolumn{1}{l|}{0.0} & 2.8 \\ \hline
+\end{tabular}
+\end{table}
+
+\section{Premium}
 
 
 \begin{itemize}
 \item \textbf{WP} (Written Premium) - is the ampount the insured must pay in order to get insurance coverage in exchange. There are different methods how to calculate the WP, but in generall the WP has to equal the expected pay outs of the insurance company and has the following form:
-$$WP=\mu + \sigma +OE +RC+U$$ 
-where $mu$ is the expected loss, $\sigma$ is the variability of expected loss, $OE$ are the operting expences, $RC$ is the reinsurance cost, U is the profit and $TotExp$ as the proportion of $OE+RC+U$ of WP
+$$WP=\mu +OE +RC+COM+\pi $$ 
+where $\mu$ is the expected loss, $OE$ are the operating expences, $RC$ is the reinsurance cost, $COM$ is the commision payment, $\pi$ is the profit and 
+$$TotExp=OE+RC+COM+\pi$$
 
-It is common to represent expenses and profit as a proportion of "pure risk premium", hence the formula can be expressed as:
-$$WP=\frac{\mu + \sigma}{1-\frac{TotExp}{WP}}$$ 
+It is common to represent total expenses as a proportion of $WP$ hence the formula can be rewritten to:
+$$WP=\frac{\mu }{1-\frac{TotExp}{WP}}$$ 
 
+So if you expect, that your total expenses as share of written premium are about 40 per cent, then this implies, that 
+$$WP=\frac{\mu}{1-0.4}=\frac{\mu}{0.6}$$
 
+Lets assume the follwoing information is given:
+\begin{itemize}
+\item long term average claim $\mu$ is estimated to equal 1400 euro
+\item $OE$ (Operating Expences) are 300 euro per policy
+\item $RC$ (Reinsurance Cost) is 300 euro per policy
+\item $COM$ (Commision) paid to an agent or broker is equal to 200 euro
+\item $\pi$ (Profit) that insrance comapny intends to make is 160 euro per policy
+\item average premium written $\overline{WP}=2400$
+\end{itemize}
 
+This allows to calculate total expences $TotExp$ and thus in two different ways the $WP$
+
+\begin{itemize}
+\item $TotExp=OE+RC+COM+\pi=300+300+200+160=960$
+\\Either: 
+\item $WP_{base}= 1440 +960=2400 $
+\item $WP_{base}=\frac{1440}{1-\frac{960}{\overline{WP}}}=\frac{1400}{0.6}=2400$
+\end{itemize}
+
+This WP is calculated for a full-year policy (= 365 days). So the $WP$ at time $t_I$ (assuming $t_E=t_C$) is :
+$$WP_{t_I}=WP_{base} \times CIY$$
 
 \item \textbf{CP} (Canceled Premium) - is the premium amount that has been or has not been paid in for the the period between cancelation and policy end date. Is calculated as: 
 $$CP=\frac{END-CANCEL+1}{END-START+1} \times WP $$
 $$CP_A=\frac{2017.12.31-2017.10.30+1}{2017.12.31-2017.01.01+1} \times 2400=  \frac{61}{365} \times 2400=401.10 $$
 
+\item \textbf{GWP} (Gross Written Premium) - is the difference between written premium (WP) and canceled premium (CP) at the end of the insurance period. $$GWP=WP-CP$$ 
+If the policy is not canceled, then $CP=0$ and $GWP=WP$.
+
+It can also be expressed as $GWP=EP+UPR$
+
+\item \textbf{UPR} (Unearned Premium Reserve) - is the ammount of premium that is reserved as not yet earned and if policy is cancelled, this amouont would be returned to policy holder/payer. 
+
+$$UPR=\frac{t_T - \min(t_T,t_n)}{t_T - t_S +1 } \times (WP - CP)$$ 
+with $$\frac{UPR}{GWP} \in [0,1]$$ Means that UPR must be equal from 0 to 1 (0-100 \% of GWP depending on period when the calculation is done (TODAY)).
+$$UPR_C=\frac{2017.11.10-\min(2017.11.10,2017.05.10)}{2017.11.10-2017.01.01+1} \times (2400-341.9)=$$
+$$=UPR_C=\frac{2017.11.10-2017.07.15}{2017.11.10-2017.01.01 +1} \times 2058.1=$$
+$$=UPR_C=\frac{118}{314} \times 2058.1=773.4$$
+
+\item \textbf{EP} (Earned Premium) - is the ammont of earned premium to date of cancelation. 
+$$EP=GWP-UPR$$
+$$EP_B=(2400-335.34)-901.91=1162.75$$
+
 
 \end{itemize}
+
 
 \subsection{Claims}
 
@@ -161,30 +253,10 @@ $$CP_A=\frac{2017.12.31-2017.10.30+1}{2017.12.31-2017.01.01+1} \times 2400=  \fr
 
 \begin{enumerate}
 
-\item \textbf{GWP} (Gross Written Premium) - is the difference between written premium (WP) and canceled premium (CP) at the end of the insurance period. $$GWP=WP-CP$$ 
-If the policy is not canceled, then $CP=0$ and $GWP=WP$.
-
-It can also be expressed as $GWP=EP+UPR$
-
-\item \textbf{UPR} (Unearned Premium Reserve) - is the ammount of premium that is reserved as not yet earned and if policy is cancelled, this amouont would be returned to policy holder/payer. 
-
-$$UPR=\frac{t_T - \min(t_T,t_n)}{t_T - t_S +1 } \times (WP - CP)$$ 
-with $$\frac{UPR}{GWP} \in [0,1]$$ Means that UPR must be equal from 0 to 1 (0-100 \% of GWP depending on period when the calculation is done (TODAY)).
-$$UPR_C=\frac{2017.11.10-\min(2017.11.10,2017.05.10)}{2017.11.10-2017.01.01+1} \times (2400-341.9)=$$
-$$=UPR_C=\frac{2017.11.10-2017.07.15}{2017.11.10-2017.01.01 +1} \times 2058.1=$$
-$$=UPR_C=\frac{118}{314} \times 2058.1=773.4$$
-
-\item \textbf{EP} (Earned Premium) - is the ammont of earned premium to date of cancelation. 
-$$EP=GWP-UPR$$
-$$EP_B=(2400-335.34)-901.91=1162.75$$
 
 
-\item \textbf{IY} (Insurance Years (TODAY)) is the .... 
-$$IY=\frac{(\min{(END, CANCEL, TODAY)}-START+1}{365}$$
 
 
-\item \textbf{CIY} (Contract Insurance Years) is the ... 
-$$CIY=\frac{\min(END, CANCEL) - START +1}{365}$$
 
 
 
@@ -221,49 +293,7 @@ $$AC_t=\frac{IL_t}{CC_t}$$
 \end{enumerate}
 
 
-\section{Example file}
 
-\begin{table}[H]
-\centering
-\caption{My caption}
-\label{my-label}
-\begin{tabular}{|l|c|c|c|c|c|c|}
-\hline
-Attribute       & Policy A   & Policy B   & Policy C   & Policy C   & Policy D   & SUM                \\ \hline
-$t_S$          & 2017-01-01 & 2017-01-01 & 2017-01-01 & 2017-03-01 & 2017-01-01 &                    \\ \cline{1-6}
-$t_C$          &            & 2017-05-10 & 2017-11-10 &            & 2017-01-01 &                    \\ \cline{1-6}
-$t_E$             & 2017-12-31 & 2017-12-31 & 2017-12-31 & 2017-09-30 & 2017-12-31 &                    \\ \cline{1-6}
-$t_T$     & 2017-12-31 & 2017-05-10 & 2017-11-10 & 2017-09-30 & 2017-01-01 &                    \\ \cline{1-6}
-$t_n$           & 2017-07-15 & 2017-07-15 & 2017-07-15 & 2017-07-15 & 2017-07-15 & \multirow{-5}{*}{} \\ \hline
-                &            &            &            &            &            &                    \\ \hline
-SUM INSURED     & 10,000     & 10,000     & 10,000     & 10,000     & 10,000     & 50,000             \\ \hline
-\rowcolor[HTML]{3166FF} 
-CLAIM FREQUENCY & 40.00\%    & 40.00\%    & 40.00\%    & 40.00\%    & 40.00\%    & 40.00\%            \\ \hline
-WP              & 2,400.0    & 2,400.0    & 2,400.0    & 1,407.1    & 2,400.0    & 11,007.12          \\ \hline
-CP              & 0.0        & 1,551.8    & 341.9      & 0.0        & 2,400.0    & 4,293.70           \\ \hline
-GWP             & 2,400.0    & 848.2      & 2,058.1    & 1,407.1    & 0.0        & 6,713.42           \\ \hline
-UPR             & 1,111.2    & 0.0        & 901.9      & 506.3      & 0.0        & 2,519.45           \\ \hline
-EP              & 1,288.8    & 848.2      & 1,156.2    & 900.8      & 0.0        & 8,487.68           \\ \hline
-IY              & 0.5        & 0.4        & 0.5        & 0.4        & 0.0        & 1.81               \\ \hline
-CIY             & 1.0        & 0.4        & 0.9        & 0.6        & 0.0        & 2.81               \\ \hline
-\rowcolor[HTML]{FFFE65} 
-CLAIMS          & 0.0        & 0.0        & 6,000.0    & 1,000.0    & 0.0        & 7,000.00           \\ \hline
-\rowcolor[HTML]{FFFE65} 
-RESERVES        & 0.0        & 0.0        & 0.0        & 3,000.0    & 0.0        & 3,000.00           \\ \hline
-\rowcolor[HTML]{3166FF} 
-IBNR            & 1,863.0    & 0.0        & 1,515.9    & 1,457.9    & 0.0        & 4,836.88           \\ \hline
-REGRESS         & 0          & 0          & 0          & 0          & 0          & 0.00               \\ \hline
-IL              & 0          & 0          & 6000       & 4000       & 0          & 10,000.00          \\ \hline
-LR              & 0.00\%     & 0.00\%     & 518.95\%   & 444.04\%   & 0.00\%     & 117.82\%           \\ \hline
-CC              & 2.00       & 2.00       & 2.00       & 2.00       & 2.00       & 2.00               \\ \hline
-CF              & 1.11       & 1.11       & 1.11       & 1.11       & 1.11       & 1.11               \\ \hline
-AC              & 5,000      & 5,000      & 5,000      & 5,000      & 5,000      & 5,000              \\ \hline
-YEP             & 2,319      & 2,319      & 2,319      & 2,319      & 2,319      & 2,319              \\ \hline
-YGWP            & 2,393      & 2,393      & 2,393      & 2,393      & 2,393      & 2,393              \\ \hline
-BC              & 2000       & 2000       & 2000       & 2000       & 2000       & 2000               \\ \hline
-TLR             & 66.20\%    & 66.20\%    & 66.20\%    & 66.20\%    & 66.20\%    & 66.20\%            \\ \hline
-TP              & 3,021      & 3,021      & 3,021      & 3,021      & 3,021      & 3,021              \\ \hline
-\end{tabular}
-\end{table}
+
 
 \end{document}

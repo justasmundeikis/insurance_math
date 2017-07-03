@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.12.26)  2 JUL 2017 16:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.12.26)  3 JUL 2017 22:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -612,7 +612,11 @@ Package: everypage 2007/06/20 1.1 Hooks to run on every page
 \sc@wm@vcenter=\skip61
 \sc@wm@fontsize=\skip62
 )
-(./Formulary.aux)
+(./Formulary.aux
+
+LaTeX Warning: Label `my-label' multiply defined.
+
+)
 \openout1 = `Formulary.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 61.
@@ -761,7 +765,24 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 66.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+)
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 66.
+
+(/usr/share/texmf/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 66.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 66.
+
+
+Package xcolor Warning: Incompatible color definition on input line 66.
+
+
+Package xcolor Warning: Incompatible color definition on input line 68.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 ] (./Formulary.toc
 
@@ -776,22 +797,16 @@ Package xcolor Warning: Incompatible color definition on input line 3.
 
 Package xcolor Warning: Incompatible color definition on input line 4.
 
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 4.
 
 Package xcolor Warning: Incompatible color definition on input line 5.
 
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 5.
 
 Package xcolor Warning: Incompatible color definition on input line 6.
 
 
 Package xcolor Warning: Incompatible color definition on input line 7.
-
-
-Package xcolor Warning: Incompatible color definition on input line 8.
-
-
-Package xcolor Warning: Incompatible color definition on input line 9.
 
 )
 \tf@toc=\write4
@@ -805,51 +820,59 @@ l.88 \newpage
               [1
 
 ]
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 96.
- (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
 
-Package xcolor Warning: Incompatible color definition on input line 115.
+Package xcolor Warning: Incompatible color definition on input line 114.
 
-[2] [3] [4]
-Overfull \hbox (45.92093pt too wide) in paragraph at lines 230--267
+[2]
+Overfull \hbox (8.40329pt too wide) in paragraph at lines 128--138
  [][] 
  []
 
-[5]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 269.
+
+Overfull \hbox (45.13689pt too wide) in paragraph at lines 158--170
+ [][] 
+ []
+
+[3] [4] [5]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 299.
  [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 269.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 299.
  (./Formulary.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 269.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 269.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 299.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 299.
 Package rerunfilecheck Info: File `Formulary.out' has not changed.
-(rerunfilecheck)             Checksum: 450AB92346B7E8C6E061E0D94676B216;444.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 269.
+(rerunfilecheck)             Checksum: 86DB7D2F67D3DA8DEB2C4E17E38DF65D;321.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 299.
  ) 
 Here is how much of TeX's memory you used:
- 10676 strings out of 493029
- 157728 string characters out of 6136233
- 283582 words of memory out of 5000000
- 13958 multiletter control sequences out of 15000+600000
- 48348 words of font info for 47 fonts, out of 8000000 for 9000
+ 10699 strings out of 493029
+ 157973 string characters out of 6136233
+ 276621 words of memory out of 5000000
+ 13975 multiletter control sequences out of 15000+600000
+ 63087 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,11n,77p,1080b,459s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/en
-c/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/s
+ 44i,12n,77p,1080b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/en
+c/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/s
 hare/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/l
 m-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.
-pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/t
-ype1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></us
-r/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/pub
-lic/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Formulary.pdf (7 pages, 197180 bytes).
+pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/t
+ype1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></us
+r/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/pub
+lic/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
+9.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/font
+s/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/symbols/msbm10.pfb>
+Output written on Formulary.pdf (7 pages, 256382 bytes).
 PDF statistics:
- 161 PDF objects out of 1000 (max. 8388607)
- 140 compressed objects within 2 object streams
- 34 named destinations out of 1000 (max. 500000)
- 73 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 167 PDF objects out of 1000 (max. 8388607)
+ 142 compressed objects within 2 object streams
+ 28 named destinations out of 1000 (max. 500000)
+ 57 words of extra memory for PDF output out of 10000 (max. 10000000)
 
